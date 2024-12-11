@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { createProductSchema } from '../../db/schema/productSchema';
+import { validateData } from '../../middlewares/validation';
 import {
   createProduct,
   deleteProduct,
@@ -8,7 +10,10 @@ import {
 } from './handlers';
 const router = Router();
 
-router.route('/').get(listProducts).post(createProduct);
+router
+  .route('/')
+  .get(listProducts)
+  .post(validateData(createProductSchema), createProduct);
 
 router
   .route('/:id')
