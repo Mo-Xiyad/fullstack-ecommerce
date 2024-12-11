@@ -2,16 +2,16 @@ import { Router } from 'express';
 import {
   createProductSchema,
   updateProductSchema
-} from '../../db/schema/productSchema';
-import { verifySeller, verifyToken } from '../../middlewares/authMiddleware';
-import { validateBodyData } from '../../middlewares/validation';
+} from '../../db/schema/productSchema.js';
+import { verifySeller, verifyToken } from '../../middlewares/authMiddleware.js';
+import { validateBodyData } from '../../middlewares/validation.js';
 import {
   createProduct,
   deleteProduct,
   getProductById,
   listProducts,
   updateProductById
-} from './handlers';
+} from './handlers.js';
 const router = Router();
 
 router

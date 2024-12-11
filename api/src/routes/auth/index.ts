@@ -7,8 +7,8 @@ import {
   createUserSchema,
   loginSchema,
   usersTable
-} from '../../db/schema/userSchema';
-import { validateBodyData } from '../../middlewares/validation';
+} from '../../db/schema/userSchema.js';
+import { validateBodyData } from '../../middlewares/validation.js';
 
 const router = Router();
 
