@@ -15,6 +15,13 @@
       "when": 1733936933858,
       "tag": "0001_round_titanium_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1733950624544,
+      "tag": "0002_brown_kulan_gath",
+      "breakpoints": true
     }
   ]
 }
