@@ -3,6 +3,7 @@ import {
   createProductSchema,
   updateProductSchema
 } from '../../db/schema/productSchema';
+import { verifySeller, verifyToken } from '../../middlewares/authMiddleware';
 import { validateBodyData } from '../../middlewares/validation';
 import {
   createProduct,
@@ -16,12 +17,22 @@ const router = Router();
 router
   .route('/')
   .get(listProducts)
-  .post(validateBodyData(createProductSchema), createProduct);
+  .post(
+    verifyToken,
+    verifySeller,
+    validateBodyData(createProductSchema),
+    createProduct
+  );
 
 router
   .route('/:id')
   .get(getProductById)
-  .put(validateBodyData(updateProductSchema), updateProductById)
-  .delete(deleteProduct);
+  .put(
+    verifyToken,
+    verifySeller,
+    validateBodyData(updateProductSchema),
+    updateProductById
+  )
+  .delete(verifyToken, verifySeller, deleteProduct);
 
 export default router;
