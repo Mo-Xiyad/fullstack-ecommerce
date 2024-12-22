@@ -16,12 +16,16 @@
     "@gluestack-ui/nativewind-utils": "^1.0.26",
     "@gluestack-ui/overlay": "^0.1.16",
     "@gluestack-ui/toast": "^1.0.8",
+    "@react-native-async-storage/async-storage": "^2.1.0",
+    "@stripe/stripe-react-native": "^0.41.0",
+    "@tanstack/react-query": "^5.62.8",
     "babel-plugin-module-resolver": "^5.0.2",
     "expo": "~52.0.18",
     "expo-constants": "^17.0.3",
     "expo-linking": "^7.0.3",
     "expo-router": "^4.0.11",
     "expo-status-bar": "~2.0.0",
+    "lucide-react-native": "^0.469.0",
     "nativewind": "^4.1.23",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -32,7 +36,8 @@
     "react-native-screens": "^4.3.0",
     "react-native-svg": "^15.2.0",
     "react-native-web": "~0.19.13",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
