@@ -40,6 +40,7 @@ export default function ProductDetailsScreen() {
 
   return (
     <Box className="flex-1 items-center p-3">
+      {/* dynamically naming the screen display name  */}
       <Stack.Screen options={{ title: product.name }} />
 
       <Card className="p-5 rounded-lg max-w-[960px] w-full flex-1">
