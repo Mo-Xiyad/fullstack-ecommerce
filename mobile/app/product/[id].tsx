@@ -1,39 +1,43 @@
-import ProductListItem from '@/components/ProductListItem';
+import { Stack, useLocalSearchParams } from 'expo-router';
+
+import { fetchProductById } from '@/api/products';
 import { Box } from '@/components/ui/box';
 import { Button, ButtonText } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Heading } from '@/components/ui/heading';
 import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
-import { useBreakpointValue } from '@/components/ui/utils/use-break-point-value';
 import { VStack } from '@/components/ui/vstack';
-import { Stack, useLocalSearchParams } from 'expo-router';
-import { FlatList } from 'react-native';
-import products from '../../assets/products.json';
-export default function ProductDetailScreen() {
+import { useCart } from '@/store/cartStore';
+import { useQuery } from '@tanstack/react-query';
+import { ActivityIndicator } from 'react-native';
+
+export default function ProductDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  console.log(products);
-  const product = products.find((p) => p.id == Number(id));
-  const addToCart = () => {};
-  // if (!product) {
-  //   // return <ActivityIndicator />;
-  //   return <Text>Product not found!</Text>;
-  // }
-  const numColumns = useBreakpointValue({
-    default: 2,
-    sm: 3,
-    xl: 4
+
+  const addProduct = useCart((state) => state.addProduct);
+
+  const {
+    data: product,
+    isLoading,
+    error
+  } = useQuery({
+    queryKey: ['products', id],
+    queryFn: () => fetchProductById(Number(id))
   });
-  return (
-    <FlatList
-      key={numColumns}
-      data={products.splice(0, 10)}
-      numColumns={numColumns}
-      contentContainerClassName="gap-2 max-w-[960px] mx-auto w-full"
-      columnWrapperClassName="gap-2"
-      renderItem={({ item }) => <ProductListItem product={item} />}
-    />
-  );
+
+  const addToCart = () => {
+    addProduct(product);
+  };
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return <Text>Product not found!</Text>;
+  }
+
   return (
     <Box className="flex-1 items-center p-3">
       <Stack.Screen options={{ title: product.name }} />
