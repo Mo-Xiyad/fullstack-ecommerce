@@ -5,10 +5,9 @@ import { orderItemsTable, ordersTable } from '../../db/schema/orderSchema.js';
 
 export async function createOrder(req: Request, res: Response) {
   try {
-    const { order, items } = req.cleanBody;
+    const { orderDetails, items } = req.cleanBody;
 
     const userId = req.userId;
-    console.log(userId);
     if (!userId) {
       res.status(400).json({ message: 'Invalid order data' });
     }
