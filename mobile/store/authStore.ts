@@ -16,6 +16,7 @@ interface AuthState {
   token: string | null;
   setUser: (user: User | null) => void;
   setToken: (token: string | null) => void;
+  logout: () => void;
 }
 
 export const useAuth = create<AuthState>()(
@@ -25,7 +26,12 @@ export const useAuth = create<AuthState>()(
       token: null,
 
       setUser: (user) => set({ user }),
-      setToken: (token) => set({ token })
+      setToken: (token) => set({ token }),
+
+      logout: () => {
+        set({ user: null, token: null });
+        AsyncStorage.removeItem('auth-store');
+      }
     }),
     {
       name: 'auth-store',

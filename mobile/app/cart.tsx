@@ -54,13 +54,15 @@ export default function CartScreen() {
         items.map((item) => ({
           productId: item.product.id,
           quantity: item.quantity,
-          price: item.product.price // MANAGE FORM SERVER SIDE
+          price: item.product.price // MANAGED FORM SERVER SIDE
         }))
       ),
     onSuccess: (data) => {
+      Alert.alert(`Order has been added!!`);
       paymentIntentMutation.mutate({ orderId: data.id });
     },
     onError: (error) => {
+      Alert.alert(`Error code: ${error}`, error.message);
       console.log(error);
     }
   });

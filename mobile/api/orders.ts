@@ -11,13 +11,14 @@ export async function createOrder(items: any[]) {
       'Content-Type': 'application/json',
       Authorization: token
     },
+    // order can be the details of the order
     body: JSON.stringify({ order: {}, items })
   });
 
   const data = await res.json();
 
   if (!res.ok) {
-    console.log(data);
+    console.log('===>>', data);
     throw new Error('Error');
   }
 
