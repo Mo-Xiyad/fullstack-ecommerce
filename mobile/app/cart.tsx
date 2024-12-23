@@ -58,7 +58,7 @@ export default function CartScreen() {
         }))
       ),
     onSuccess: (data) => {
-      Alert.alert(`Order has been added!!`);
+      // Alert.alert(`Order has been added!!`);
       paymentIntentMutation.mutate({ orderId: data.id });
     },
     onError: (error) => {

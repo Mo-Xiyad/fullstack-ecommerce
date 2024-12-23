@@ -18,11 +18,12 @@ export async function createPaymentIntent({ orderId }: { orderId: string }) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: token
+      Authorization: `Bearer ${token}`
     },
     body: JSON.stringify({ orderId })
   });
   if (!res.ok) {
+    console.log(res);
     throw new Error('Error creating payment intent');
   }
   const data = await res.json();
